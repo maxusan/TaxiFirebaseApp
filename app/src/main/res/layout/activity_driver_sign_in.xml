@@ -74,16 +74,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/sigh_up_button_text"
-        android:layout_marginTop="150dp"/>
+        android:layout_marginTop="150dp"
+        android:onClick="loginSignUpUser"/>
 
     <TextView
-        android:id="@+id/toggleLoginSighupTextView"
+        android:id="@+id/toggleLoginSignUpTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/tap_to_log_in_textview"
         android:layout_gravity="center_horizontal"
         android:textSize="20sp"
-        android:layout_marginTop="10dp" />
+        android:layout_marginTop="10dp"
+        android:onClick="toggleLoginSignUp"/>
 
 
 </LinearLayout>
