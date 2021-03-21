@@ -21,6 +21,8 @@ public class PassеngerSignInActivity extends AppCompatActivity {
 
     private TextView toggleLoginSignUpTextView;
 
+    private boolean isLoginModeActive = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -98,5 +100,17 @@ public class PassеngerSignInActivity extends AppCompatActivity {
     }
 
     public void toggleLoginSignUp(View view) {
+
+        if(isLoginModeActive){
+            isLoginModeActive = false;
+            loginSignUpButton.setText(R.string.sign_up_text);
+            toggleLoginSignUpTextView.setText(R.string.or_log_in_text);
+            textInputConfirmPassword.setVisibility(View.VISIBLE);
+        }else {
+            isLoginModeActive = true;
+            loginSignUpButton.setText(R.string.log_in_text);
+            toggleLoginSignUpTextView.setText(R.string.or_sign_up_text);
+            textInputConfirmPassword.setVisibility(View.GONE);
+        }
     }
 }
