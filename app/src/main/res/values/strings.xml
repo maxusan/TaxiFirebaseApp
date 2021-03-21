@@ -2,4 +2,10 @@
     <string name="app_name">TaxiFirebaseApp</string>
     <string name="im_a_passenger_button">Im a passenger</string>
     <string name="im_a_driver_button">Im a driver</string>
+    <string name="confirm_password_hint">Confirm password</string>
+    <string name="sigh_up_button_text">Sigh up</string>
+    <string name="password_hint">Password</string>
+    <string name="name_hint">Name</string>
+    <string name="email_hint">Email</string>
+    <string name="tap_to_log_in_textview">Tap to log in</string>
 </resources>
