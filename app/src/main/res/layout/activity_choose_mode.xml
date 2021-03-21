@@ -20,7 +20,7 @@
             android:id="@+id/passengerButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="500dp"
+            android:layout_marginTop="400dp"
             android:text="@string/im_a_passenger_button"
             android:textSize="20sp"
             android:textStyle="normal"

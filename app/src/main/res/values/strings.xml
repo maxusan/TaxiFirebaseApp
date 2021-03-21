@@ -8,4 +8,5 @@
     <string name="name_hint">Name</string>
     <string name="email_hint">Email</string>
     <string name="tap_to_log_in_textview">Tap to log in</string>
+    <string name="choose_login_mode_label">Choose login mode</string>
 </resources>

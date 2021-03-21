@@ -11,8 +11,10 @@
         android:theme="@style/Theme.TaxiFirebaseApp">
         <activity android:name=".DriverSignInActivity"></activity>
         <activity android:name=".PassеngerSignInActivity" />
-        <activity android:name=".ChangeModeActivity" />
-        <activity android:name=".SplashScreenActivity">
+        <activity android:name=".ChangeModeActivity"
+            android:label="@string/choose_login_mode_label"/>
+        <activity android:name=".SplashScreenActivity"
+            android:theme="@style/SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
