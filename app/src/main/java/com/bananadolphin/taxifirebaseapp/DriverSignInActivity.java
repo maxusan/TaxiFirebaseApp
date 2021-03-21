@@ -3,6 +3,7 @@ package com.bananadolphin.taxifirebaseapp;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -124,6 +125,7 @@ public class DriverSignInActivity extends AppCompatActivity {
                                 // Sign in success, update UI with the signed-in user's information
                                 Log.d(TAG, "signInWithEmail:success");
                                 FirebaseUser user = auth.getCurrentUser();
+                                startActivity(new Intent(DriverSignInActivity.this, DriverMapsActivity.class));
                                 //updateUI(user);
                             } else {
                                 // If sign in fails, display a message to the user.
@@ -146,6 +148,7 @@ public class DriverSignInActivity extends AppCompatActivity {
                                 // Sign in success, update UI with the signed-in user's information
                                 Log.d(TAG, "createUserWithEmail:success");
                                 FirebaseUser user = auth.getCurrentUser();
+                                startActivity(new Intent(DriverSignInActivity.this, DriverMapsActivity.class));
                                 //updateUI(user);
                             } else {
                                 // If sign in fails, display a message to the user.
