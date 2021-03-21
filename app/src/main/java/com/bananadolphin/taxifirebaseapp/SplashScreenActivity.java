@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 
-public class ChooseModeActivity extends AppCompatActivity {
+public class SplashScreenActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,7 +21,7 @@ public class ChooseModeActivity extends AppCompatActivity {
                 }catch (Exception e){
                     e.printStackTrace();
                 }finally {
-                    startActivity(new Intent(ChooseModeActivity.this, ChooseModeActivity.class));
+                    startActivity(new Intent(SplashScreenActivity.this, ChangeModeActivity.class));
                 }
             }
         };

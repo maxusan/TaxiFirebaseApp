@@ -9,8 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TaxiFirebaseApp">
-        <activity android:name=".SignInActivity"></activity>
-        <activity android:name=".ChooseModeActivity">
+        <activity android:name=".DriverSighInActivity"></activity>
+        <activity android:name=".PassеngerSignInActivity" />
+        <activity android:name=".ChangeModeActivity" />
+        <activity android:name=".SplashScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

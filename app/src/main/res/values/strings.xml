@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">TaxiFirebaseApp</string>
+    <string name="im_a_passenger_button">Im a passenger</string>
+    <string name="im_a_driver_button">Im a driver</string>
 </resources>
