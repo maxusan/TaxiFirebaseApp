@@ -14,4 +14,6 @@
     <string name="or_log_in_text">Or, log in</string>
     <string name="or_sign_up_text">Or, sign up</string>
     <string name="title_activity_driver_maps">Map</string>
+    <string name="settings_button_text">Settings</string>
+    <string name="sign_out_button">Sign out</string>
 </resources>

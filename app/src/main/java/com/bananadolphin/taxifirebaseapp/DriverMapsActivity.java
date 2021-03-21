@@ -21,6 +21,8 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.firebase.geofire.GeoFire;
+import com.firebase.geofire.GeoLocation;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.common.api.ResolvableApiException;
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -43,6 +45,10 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.text.DateFormat;
 import java.util.Date;
@@ -54,10 +60,10 @@ public class DriverMapsActivity extends FragmentActivity implements OnMapReadyCa
     private static final int CHECK_SETTINGS_CODE = 111;
     private static final int REQUEST_LOCATION_PERMISSION = 222;
 
-    /*private Button startLocationUpdatesButton;
-    private Button stopLocationUpdatesButton;
-    private TextView locationTextView;
-    private TextView locationUpdateTimeTextView;*/
+    private Button settingsButton, signOutButton;
+
+    private FirebaseAuth auth;
+    private FirebaseUser currentUser;
 
     private FusedLocationProviderClient fusedLocationClient;
     private SettingsClient settingsClient;
@@ -75,6 +81,19 @@ public class DriverMapsActivity extends FragmentActivity implements OnMapReadyCa
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
         settingsClient = LocationServices.getSettingsClient(this);
+        auth = FirebaseAuth.getInstance();
+        currentUser = auth.getCurrentUser();
+
+        settingsButton = findViewById(R.id.settingsButton);
+        signOutButton = findViewById(R.id.signOutButton);
+
+        signOutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                auth.signOut();
+                signOutDriver();
+            }
+        });
 
         buildLocationRequest();
         buildLocationCallback();
@@ -85,6 +104,23 @@ public class DriverMapsActivity extends FragmentActivity implements OnMapReadyCa
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+    }
+
+    private void signOutDriver() {
+
+        String driverUserId = currentUser.getUid();
+
+        DatabaseReference drivers = FirebaseDatabase.getInstance().getReference().child("drivers");
+
+        GeoFire geoFire = new GeoFire(drivers);
+        geoFire.removeLocation(driverUserId);
+
+        Intent intent = new Intent(DriverMapsActivity.this, ChangeModeActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK |
+                Intent.FLAG_ACTIVITY_CLEAR_TASK);
+
+        startActivity(intent);
+        finish();
     }
 
     /**
@@ -214,7 +250,15 @@ public class DriverMapsActivity extends FragmentActivity implements OnMapReadyCa
             mMap.moveCamera(CameraUpdateFactory.newLatLng(currentLatLng));
             mMap.animateCamera(CameraUpdateFactory.zoomTo(12));
             mMap.addMarker(new MarkerOptions().position(currentLatLng).title("Driver location"));
+
+            String driverUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+            DatabaseReference drivers = FirebaseDatabase.getInstance().getReference().child("drivers");
+
+            GeoFire geoFire = new GeoFire(drivers);
+            geoFire.setLocation(driverUserId, new GeoLocation(currentLocation.getLatitude(), currentLocation.getLongitude()));
         }
+
+
 
 
         //locationUpdateTimeTextView.setText(DateFormat.getTimeInstance().format(new Date()));
